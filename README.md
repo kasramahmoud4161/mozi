@@ -1,9 +1,35 @@
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=300&section=header&text=&fontSize=90&animation=fadeIn&fontAlignY=38&descAlignY=55&descSize=30" width="100%" style="position: relative; z-index: 1;">
   
-  <div style="margin-top: -140px; position: relative; z-index: 2;">
-    <img src="https://ui-avatars.com/api/?name=M&background=0D1117&color=00f2ff&size=150&rounded=true&bold=true&font-size=0.5&length=1" alt="MOZI Logo" width="140" style="border: 5px solid #00f2ff; border-radius: 50%; box-shadow: 0 0 35px rgba(0, 242, 255, 0.7);">
+<div align="center" style="margin-top: -140px; position: relative; z-index: 2;">
+  
+  <div style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        position: relative;
+        padding: 20px 0;
+        margin-bottom: 20px;
+        background: linear-gradient(90deg, transparent 0%, rgba(0,255,0,0.2) 20%, rgba(0,255,0,0.5) 50%,   rgba(0,255,0,0.2) 80%, transparent 100%);
+        box-shadow: 0 0 25px rgba(0,255,0,0.7), inset 0 0 10px rgba(0,255,0,0.5);
+        border-radius: 10px;
+        border: 1px solid rgba(0,255,0,0.8);
+      ">
+        <img src="https://logodust.com/img/design/neon-line.png?text=M&color=00FF00&line=true&circle=true&glow=true&font=monospace" alt="MOZI Glitch Logo" width="180" style="
+          filter: drop-shadow(0 0 10px #00FF00) drop-shadow(0 0 20px #00FF00); 
+          border-radius: 50%; 
+          border: 3px solid #00FF00;
+          position: relative;
+          z-index: 3;
+    ">
   </div>
+  
+  <a href="https://github.com/kasramahmoud4161/mozi" style="text-decoration: none;">
+    <img src="https://readme-typing-svg.herokuapp.com?font=VT323&weight=400&size=60&pause=1000&color=00FF00&center=true&vCenter=true&width=700&lines=MOZI+PROTOCOL;ACTIVATED..." alt="Typing SVG" />
+  </a>
+
+</div>
 
   <a href="https://github.com/kasramahmoud4161/mozi">
     <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&weight=900&size=60&pause=1000&color=FFFFFF&center=true&vCenter=true&width=700&lines=MOZI+PROJECT;THE+FUTURE+IS+NOW;ULTIMATE+PERFORMANCE" alt="Typing SVG" />
