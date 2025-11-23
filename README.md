@@ -1,83 +1,88 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=240&section=header&text=MOZI&fontSize=80&fontAlignY=35&desc=Powerful%20%7C%20Fast%20%7C%20Secure&descAlignY=65&descSize=20&fontColor=ffffff&animation=fadeIn&fontAlign=50" alt="MOZI Header" width="100%">
+<img src="https://capsule-render.vercel.app/api?type=transparent&color=00f2ff&height=280&section=header&text=MOZI&fontSize=90&fontAlignY=40&desc=The%20Future%20is%20Here.&descAlignY=68&descSize=22&fontColor=ffffff&animation=fadeIn&stroke=00f2ff&strokeWidth=2" alt="MOZI Ultimate Header" width="100%">
 
-<p>
-  <a href="https://github.com/kasramahmoud4161/mozi/stargazers">
-    <img src="https://img.shields.io/github/stars/kasramahmoud4161/mozi?style=for-the-badge&logo=starship&color=ffcc00" alt="Stars">
+<p align="center">
+  <a href="#features" style="text-decoration: none; margin: 0 10px;">
+    <img src="https://img.shields.io/badge/✨%20Features-Explore-00f2ff?style=for-the-badge&labelColor=black" alt="Features">
   </a>
-  <a href="https://github.com/kasramahmoud4161/mozi/network/members">
-    <img src="https://img.shields.io/github/forks/kasramahmoud4161/mozi?style=for-the-badge&logo=git&color=00ccff" alt="Forks">
+  <a href="#demo" style="text-decoration: none; margin: 0 10px;">
+    <img src="https://img.shields.io/badge/📸%20Demo-View-ff00d4?style=for-the-badge&labelColor=black" alt="Demo">
   </a>
-  <a href="https://github.com/kasramahmoud4161/mozi/issues">
-    <img src="https://img.shields.io/github/issues/kasramahmoud4161/mozi?style=for-the-badge&logo=github&color=ff3333" alt="Issues">
+  <a href="https://github.com/kasramahmoud4161/mozi/stargazers" style="text-decoration: none; margin: 0 10px;">
+    <img src="https://img.shields.io/github/stars/kasramahmoud4161/mozi?style=for-the-badge&color=adff2f&labelColor=black&logo=starship" alt="Stars">
   </a>
-</p>
-<p>
-  <img src="https://img.shields.io/badge/Version-1.0.0-success?style=flat-square&logo=rocket" alt="Version">
-  <img src="https://img.shields.io/badge/Maintained-Yes-blueviolet?style=flat-square&logo=check" alt="Maintained">
-  <img src="https://img.shields.io/github/license/kasramahmoud4161/mozi?style=flat-square&color=green" alt="License">
 </p>
 
 <br>
 
-<h3>✨ به دنیای MOZI خوش آمدید ✨</h3>
-<p align="center" width="70%">
-  <b>پروژه‌ای برای آینده.</b> <br>
-  این ابزار با هدف سادگی و قدرت طراحی شده است تا تجربه‌ای متفاوت را برای شما رقم بزند. <br>
-  سریع، امن و کاملاً متن‌باز برای همه.
-</p>
-
-<br>
+<div style="background: rgba(20, 20, 20, 0.7); border-radius: 20px; padding: 30px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.5); max-width: 80%;">
+  <h3 style="color: #00f2ff;">🔻 بازتعریف استانداردها 🔻</h3>
+  <p style="font-size: 1.1rem; color: #e0e0e0; line-height: 1.8;">
+    پروژه <b>MOZI</b> یک جهش بزرگ در دنیای نرم‌افزار است. ما مرزهای طراحی و عملکرد را جابجا کرده‌ایم تا ابزاری را ارائه دهیم که نه تنها کار می‌کند، بلکه شما را مجذوب خود خواهد کرد.
+    <br><br>
+    <i>سریع‌تر، هوشمندتر، و زیباتر از هر چیزی که تاکنون دیده‌اید.</i>
+  </p>
+</div>
 
 </div>
 
----
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" width="100%" height="30" style="opacity:0;"/> <img src="https://capsule-render.vercel.app/api?type=waving&color=00f2ff&height=60&section=footer" width="100%" style="transform: rotate(180deg);">
 
-## 🚀 ویژگی‌های برجسته (Features)
+<div id="features" align="center">
+  <h2 style="font-size: 2.5rem; margin-bottom: 40px;">⚡ ویژگی‌های نسل بعدی</h2>
 
-ما در MOZI روی جزئیات تمرکز کرده‌ایم تا شما راحت باشید:
+  <table align="center" style="border-collapse: collapse; border: none; width: 90%;">
+    <tr style="border: none;">
+      <td align="center" width="50%" style="padding: 20px; border: none;">
+        <img src="https://cdn-icons-png.flaticon.com/512/9649/9649367.png" width="80">
+        <h3 style="color: #adff2f;">عملکرد کوانتومی</h3>
+        <p>سرعتی باورنکردنی که با معماری بهینه‌شده ما ممکن شده است.</p>
+      </td>
+      <td align="center" width="50%" style="padding: 20px; border: none;">
+        <img src="https://cdn-icons-png.flaticon.com/512/1187/1187618.png" width="80">
+        <h3 style="color: #ff00d4;">امنیت چندلایه</h3>
+        <p>محافظت از داده‌های شما با جدیدترین پروتکل‌های رمزنگاری.</p>
+      </td>
+    </tr>
+    <tr style="border: none;">
+      <td align="center" width="50%" style="padding: 20px; border: none;">
+        <img src="https://cdn-icons-png.flaticon.com/512/3159/3159310.png" width="80">
+        <h3 style="color: #00f2ff;">طراحی خیره‌کننده</h3>
+        <p>رابط کاربری که استفاده از آن لذت‌بخش و بصری است.</p>
+      </td>
+      <td align="center" width="50%" style="padding: 20px; border: none;">
+        <img src="https://cdn-icons-png.flaticon.com/512/9675/9675090.png" width="80">
+        <h3 style="color: #ffcc00;">مقیاس‌پذیری ابری</h3>
+        <p>آماده برای رشد و اجرا در هر محیط ابری مدرن.</p>
+      </td>
+    </tr>
+  </table>
+</div>
 
-| قابلیت | توضیحات | وضعیت |
-| :--- | :--- | :---: |
-| ⚡ **سرعت فوق‌العاده** | پردازش سریع و بهینه شده برای تمام سیستم‌ها | ✅ |
-| 🛡️ **امنیت بالا** | اولویت ما امنیت داده‌ها و حریم خصوصی شماست | ✅ |
-| 💎 **رابط کاربری** | طراحی مدرن، مینیمال و کاربرپسند | ✅ |
-| 🔧 **نصب آسان** | راه‌اندازی تنها با چند کلیک ساده | ✅ |
+<img src="https://capsule-render.vercel.app/api?type=waving&color=ff00d4&height=60&section=footer" width="100%" style="transform: rotate(180deg);">
 
----
+<div id="demo" align="center" style="margin-top: 30px;">
+  <h2 style="font-size: 2.5rem;">📺 تجربه بصری (Demo)</h2>
+  <p style="color: #aaa;">نمایی از آینده‌ای که ما ساخته‌ایم</p>
 
-## 💻 محیط پروژه (Visuals)
+  <div style="background: #1a1a1a; padding: 10px; border-radius: 15px 15px 0 0; width: 85%; max-width: 800px; text-align: left;">
+    <span style="height: 12px; width: 12px; background-color: #ff5f56; border-radius: 50%; display: inline-block; margin-left: 10px;"></span>
+    <span style="height: 12px; width: 12px; background-color: #ffbd2e; border-radius: 50%; display: inline-block;"></span>
+    <span style="height: 12px; width: 12px; background-color: #27c93f; border-radius: 50%; display: inline-block;"></span>
+  </div>
+  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDN4eWZmYzF1amg4cTlvZWh5eHZ1MHJvcGF4b2t2c2E4N3p3dGk4MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xT9IgzoKnwFNmISR8I/giphy.gif" alt="MOZI High-End Demo" width="85%" style="max-width: 800px; border-radius: 0 0 15px 15px; box-shadow: 0 20px 50px rgba(0,0,0,0.8);">
+
+</div>
+
+<br><br>
 
 <div align="center">
-  <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnZ0Z3Z4aWZ6Z3Z4aWZ6Z3Z4aWZ6Z3Z4aWZ6Z3Z4aWZ6Z3Z4aWZ6Z3Z4aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L1R1TVThqceP6/giphy.gif" alt="Coding Gif" width="100%" style="border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.5);">
-  <br>
-  <i>توسعه مداوم برای بهترین عملکرد</i>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=150&section=footer&text=Made%20with%20Passion.&fontSize=30&fontColor=ffffff" width="100%">
+
+  <p style="margin-top: -80px; position: relative; z-index: 10;">
+    <a href="https://github.com/kasramahmoud4161">
+      <img src="https://img.shields.io/badge/GitHub-Profile-black?style=flat-square&logo=github&logoColor=white" alt="Profile">
+    </a>
+  </p>
 </div>
-
----
-
-## 🛠 ابزارها و تکنولوژی‌ها (Tech Stack)
-
-<div align="center">
-  <img src="https://img.shields.io/badge/Code-Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
-  <img src="https://img.shields.io/badge/Tools-Git-F05032?style=for-the-badge&logo=git&logoColor=white">
-  <img src="https://img.shields.io/badge/OS-Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black">
-  <img src="https://img.shields.io/badge/Editor-VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white">
-</div>
-
----
-
-## ⚙️ راهنمای نصب سریع (Quick Start)
-
-برای استفاده از این پروژه، دستورات زیر را در ترمینال خود وارد کنید:
-
-```bash
-# 1. دریافت پروژه
-git clone [https://github.com/kasramahmoud4161/mozi.git](https://github.com/kasramahmoud4161/mozi.git)
-
-# 2. ورود به پوشه
-cd mozi
-
-# 3. اجرا (اگر پایتون است)
-python main.py
