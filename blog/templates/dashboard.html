@@ -1,0 +1,71 @@
+{% extends 'base.html' %} 
+
+{% block title %}داشبورد اصلی{% endblock %}
+
+{% block content %}
+    
+<style>
+.page-title { font-size:28px;font-weight:700;color:var(--text-dark);margin-bottom:25px; }
+.module-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;margin-top:20px; }
+.module-card { background:var(--card-bg);border-radius:12px;padding:25px;box-shadow:0 4px 15px rgba(0,0,0,0.05);transition:transform 0.3s ease, box-shadow 0.3s ease;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:150px; }
+.module-card:hover { transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,0.1); }
+.module-icon { font-size:36px;color:white;width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:15px; }
+.module-card h3 { font-size:18px;font-weight:700;margin-bottom:10px;color:var(--text-dark); }
+.module-card p { font-size:14px;color:#7f8c8d;margin-bottom:20px; }
+.module-link { font-weight:600;padding:8px 15px;border-radius:6px;transition:0.3s; }
+
+/* کارت‌ها */
+.card-attendance .module-icon { background-color:var(--primary-color); }
+.card-attendance .module-link { color:var(--primary-color); border:1px solid var(--primary-color); }
+.card-attendance .module-link:hover { background-color:var(--primary-color);color:white; }
+
+.card-grade .module-icon { background-color:var(--warning-color); }
+.card-grade .module-link { color:var(--warning-color); border:1px solid var(--warning-color); }
+.card-grade .module-link:hover { background-color:var(--warning-color);color:white; }
+
+.card-report .module-icon { background-color:var(--secondary-color); }
+.card-report .module-link { color:var(--secondary-color); border:1px solid var(--secondary-color); }
+.card-report .module-link:hover { background-color:var(--secondary-color);color:white; }
+</style>
+
+<h2 class="page-title">👋 خوش آمدید، {{ user.get_full_name|default:user.phone }}!</h2>
+
+{% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+<div class="module-grid">
+    <a href="{% url 'blog:attendance_manage' %}" class="module-card card-attendance">
+        <div class="module-icon"><i class="fas fa-calendar-check"></i></div>
+        <h3>حضور و غیاب روزانه</h3>
+        <p>وضعیت حضور دانش‌آموزان را روزانه ثبت و مدیریت کنید.</p>
+        <span class="module-link">ورود به ماژول</span>
+    </a>
+
+    <a href="{% url 'blog:grade_entry' %}" class="module-card card-grade">
+        <div class="module-icon"><i class="fas fa-graduation-cap"></i></div>
+        <h3>ثبت نمرات آزمون‌ها</h3>
+        <p>نمرات دروس مختلف را برای دانش‌آموزان ثبت نمایید.</p>
+        <span class="module-link">ورود به ماژول</span>
+    </a>
+    
+    <a href="{% url 'blog:grade_report' %}" class="module-card card-report">
+        <div class="module-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>گزارش کارنامه‌ها</h3>
+        <p>کارنامه‌های کلی و جزئی دانش‌آموزان را مشاهده کنید.</p>
+        <span class="module-link">مشاهده گزارش</span>
+    </a>
+    
+    <a href="{% url 'blog:attendance_report' %}" class="module-card card-report">
+        <div class="module-icon" style="background-color:#9b59b6;"><i class="fas fa-list-alt"></i></div>
+        <h3>گزارش کلی حضور و غیاب</h3>
+        <p>مشاهده آمار کلی غیبت‌ها بر اساس تاریخ و سطح.</p>
+        <span class="module-link" style="color:#9b59b6;border-color:#9b59b6;">مشاهده گزارش</span>
+    </a>
+</div>
+
+{% endblock %}

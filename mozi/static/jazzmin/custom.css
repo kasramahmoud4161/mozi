@@ -1,0 +1,44 @@
+body {
+    background: linear-gradient(135deg, #0b182b 0%, #351b45 100%);
+    overflow-x: hidden;
+}
+
+/* Glass Effect */
+.card, .content-wrapper, .main-footer, .main-header {
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Floating Elements */
+body::before, body::after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #7b3ff6 0%, transparent 70%);
+    animation: float 12s infinite linear alternate;
+    filter: blur(120px);
+    z-index: -1;
+}
+
+body::after {
+    right: -200px;
+    bottom: -200px;
+    background: radial-gradient(circle, #00c3ff 0%, transparent 70%);
+}
+
+@keyframes float {
+    0% { transform: translate(-50px, -50px); }
+    100% { transform: translate(50px, 50px); }
+}
+
+/* Text Colors */
+.sidebar {
+    color: #eee !important;
+}
+.btn {
+    border-radius: 12px !important;
+}

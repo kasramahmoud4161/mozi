@@ -1,0 +1,93 @@
+{% extends 'base.html' %} 
+
+{% block title %}پیام‌ها و مکالمات{% endblock %}
+
+{% block content %}
+    <style>
+        .chat-container {
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        .conversation-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.2s;
+        }
+        .conversation-item:hover {
+            background-color: var(--bg-light);
+        }
+        .conversation-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            flex-grow: 1;
+        }
+        .conversation-link h4 {
+            font-size: 18px;
+            margin: 0;
+        }
+        .conversation-link p {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        .unread-count {
+            background-color: var(--danger-color);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        .start-new-chat-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            text-decoration: none; /* اضافه شده */
+        }
+        .start-new-chat-btn:hover { background-color: #27ae60; }
+    </style>
+
+    <div class="chat-container">
+        <h2 style="color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-bottom: 20px;">پیام‌ها و مکالمات</h2>
+
+        {% if conversations %}
+            {% for convo in conversations %}
+                <div class="conversation-item">
+                    <a href="{% url 'chat:chat_detail' conversation_id=convo.id %}" class="conversation-link">
+                        <h4>
+                            مکالمه با: 
+                            {% for participant in convo.participants.all %}
+                                {% if participant != request.user %}
+                                    {{ participant.profile.first_name }} {{ participant.profile.last_name }}
+                                {% endif %}
+                            {% endfor %}
+                        </h4>
+                        <p>آخرین پیام: {{ convo.get_jalali_updated_at }}</p>
+                    </a>
+                    
+                    {% if convo.unread_count > 0 %}
+                        <span class="unread-count">{{ convo.unread_count }}</span>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p style="text-align: center; padding: 20px; color: #7f8c8d;">هنوز هیچ مکالمه‌ای ندارید.</p>
+        {% endif %}
+        
+        <a href="{% url 'chat:chat_new' %}" class="start-new-chat-btn">
+            <i class="fas fa-plus"></i> شروع مکالمه جدید
+        </a>
+    </div>
+{% endblock %}

@@ -1,0 +1,156 @@
+{% extends 'base.html' %} 
+
+{% block title %}ویرایش پروفایل{% endblock %}
+
+{% block content %}
+<style>
+    /* -------------------- استایل‌های اصلی کانتینر -------------------- */
+    .update-profile-container {
+        max-width: 650px;
+        margin: 30px auto;
+        background-color: #ffffff;
+        border-radius: 16px; 
+        box-shadow: 0 12px 40px rgba(44, 62, 80, 0.15); 
+        padding: 40px;
+        border-top: 5px solid #2ecc71; 
+    }
+    .update-profile-container h3 {
+        color: #2c3e50;
+        text-align: center;
+        margin-bottom: 25px;
+        font-weight: 800;
+        border-bottom: 1px solid #ecf0f1;
+        padding-bottom: 15px;
+        font-size: 24px;
+    }
+
+    /* -------------------- استایل‌های فرم گرید -------------------- */
+    .form-grid-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr; 
+        gap: 20px;
+    }
+    
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .form-group label {
+        font-size: 14px;
+        color: #34495e;
+        margin-bottom: 8px;
+        font-weight: 600;
+        display: block; 
+    }
+    
+    .form-group input, .form-group select {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #dcdde1;
+        border-radius: 8px;
+        font-size: 16px;
+        color: #34495e;
+        direction: rtl; 
+        transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    
+    .form-group input[name="phone"] {
+        direction: ltr; 
+        text-align: left;
+    }
+
+    .form-group input:focus, .form-group select:focus {
+        border-color: #2ecc71;
+        box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+        outline: none;
+    }
+    
+    /* -------------------- دکمه و خطاها -------------------- */
+    .submit-button {
+        display: block;
+        grid-column: 1 / -1; 
+        width: 100%;
+        padding: 15px;
+        background-color: #2ecc71; 
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.1s;
+        margin-top: 15px;
+    }
+    .submit-button:hover {
+        background-color: #27ae60;
+        transform: translateY(-1px);
+    }
+
+    .text-danger {
+        font-size: 13px;
+        display: block;
+        margin-top: 5px;
+        color: #e74c3c; 
+        list-style: none; 
+        padding-right: 0;
+    }
+    
+    /* فیلد شماره تماس که از بیرون مدل است */
+    .main-user-fields {
+        grid-column: 1 / -1; 
+        border-bottom: 1px solid #ecf0f1;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+    }
+
+    /* -------------------- واکنش‌گرایی موبایل -------------------- */
+    @media (max-width: 650px) {
+        .form-grid-layout {
+            grid-template-columns: 1fr; 
+        }
+        .update-profile-container {
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+        }
+    }
+</style>
+
+<div class="update-profile-container">
+    <h3>&#9998; ویرایش اطلاعات پروفایل</h3>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div style="margin-bottom: 15px; padding: 10px; border-radius: 6px; background-color: {% if 'success' in message.tags %}#e8f7e8{% else %}#fbe0e0{% endif %}; border: 1px solid {% if 'success' in message.tags %}#2ecc71{% else %}#e74c3c{% endif %};">
+                <p style="margin: 0; color: {% if 'success' in message.tags %}#27ae60{% else %}#e74c3c{% endif %}; font-weight: 600;">{{ message }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" action="{% url 'blog:profile_update' %}" novalidate>
+        {% csrf_token %}
+        
+        <div class="form-grid-layout">
+            
+            <div class="form-group main-user-fields">
+                {{ form.phone.label_tag }}
+                {{ form.phone }}
+                {% if form.phone.errors %}<div class="text-danger">{{ form.phone.errors }}</div>{% endif %}
+            </div>
+
+            {% for field in form %}
+                {% if field.name != 'phone' %}
+                    <div class="form-group">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.errors %}<div class="text-danger">{{ field.errors }}</div>{% endif %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            <button type="submit" class="submit-button">ذخیره و به‌روزرسانی اطلاعات</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

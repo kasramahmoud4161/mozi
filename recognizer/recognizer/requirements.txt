@@ -1,0 +1,6 @@
+numpy==1.26.4
+opencv-python==4.12.0.88
+insightface==0.7.3
+onnxruntime==1.23.2
+scikit-learn
+requests

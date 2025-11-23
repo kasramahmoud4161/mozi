@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}ثبت دانش‌آموز{% endblock %}
+
+{% block content %}
+<div style="max-width:600px;margin:auto;">
+    <h2 class="page-title">📸 ثبت دانش‌آموز جدید</h2>
+
+    {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="post" style="background-color: var(--card-bg);padding:25px;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,0.05);display:flex;flex-direction:column;gap:20px;">
+        {% csrf_token %}
+        <label>نام دانش‌آموز</label>
+        <input type="text" name="name" required style="padding:12px;border-radius:8px;border:1px solid var(--border-color);">
+        <label>شماره تماس</label>
+        <input type="text" name="phone" required style="padding:12px;border-radius:8px;border:1px solid var(--border-color);">
+        <button type="submit" style="padding:12px;background-color:var(--primary-color);color:white;font-weight:600;border:none;border-radius:8px;cursor:pointer;transition:0.3s;">
+            ثبت دانش‌آموز
+        </button>
+    </form>
+</div>
+
+<script>
+console.log("Enroll page loaded");
+</script>
+{% endblock %}

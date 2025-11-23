@@ -1,0 +1,61 @@
+{% extends 'base.html' %} 
+
+{% block title %}ارسال تکلیف: {{ assignment.title }}{% endblock %}
+
+{% block content %}
+    <style>
+        .submission-card {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--secondary-color);
+            text-align: center;
+        }
+        .submission-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        .submission-card p {
+            color: var(--text-dark);
+            margin-bottom: 25px;
+            opacity: 0.8;
+        }
+        .submission-card input[type="file"] {
+            display: block;
+            margin: 15px auto;
+            border: 1px dashed var(--border-color);
+            padding: 10px;
+            width: 100%;
+        }
+        .submit-button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--secondary-color); 
+            color: white;
+            border-radius: 6px;
+            font-weight: 700;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        .submit-button:hover { background-color: #27ae60; }
+    </style>
+
+    <div class="submission-card">
+        <h3>ارسال تکلیف: {{ assignment.title }}</h3>
+        <p>لطفاً فایل نهایی تکلیف خود را آپلود کنید.</p>
+
+        <form method="POST" action="{% url 'blog:submission_create' assignment_id=assignment.id %}" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            
+            {% if form.file.errors %}<div class="text-danger">{{ form.file.errors }}</div>{% endif %}
+            
+            {{ form.file }}
+
+            <button type="submit" class="submit-button">نهایی کردن و ارسال</button>
+        </form>
+    </div>
+{% endblock %}

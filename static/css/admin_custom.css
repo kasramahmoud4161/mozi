@@ -1,0 +1,104 @@
+/* static/css/admin_custom.css */
+
+/* --- استایل‌های رنگ و فونت --- */
+#header {
+    background-color: #2c3e50 !important; /* رنگ سرمه‌ای تیره */
+    color: #ecf0f1 !important;
+}
+
+#branding h1 a:link,
+#branding h1 a:visited {
+    color: #ecf0f1 !important; /* رنگ متن هدر */
+}
+
+body, th, td, caption, input, textarea, select, h1, h2, h3 {
+    font-family: 'Vazirmatn', sans-serif !important;
+}
+
+.module h2, .module caption {
+    background-color: #3498db !important; /* آبی ملایم‌تر */
+}
+
+.submit-row input.default, input[type=submit].default {
+    background-color: #2ecc71 !important; /* سبز */
+    color: white !important;
+}
+.submit-row input.default:hover, input[type=submit].default:hover {
+    background-color: #27ae60 !important;
+}
+
+/* --- تنظیم اندازه لوگو در هدر ادمین Jazzmin --- */
+/* این سلکتور باید لوگو رو هدف قرار بده */
+.navbar-brand img {
+    max-height: 40px !important;  /* <-- ارتفاع مورد نظر + مهم بودن! */
+    width: auto !important;       /* <-- عرض خودکار + مهم بودن! */
+    margin-left: 10px;
+    vertical-align: middle;
+    /* border: 3px solid red !important; */ /* <-- اگه لازم شد برای تست از کامنت در بیار */
+}
+
+body.login-page, /* صفحه لاگین */
+body.sidebar-mini /* صفحات داخلی ادمین */ {
+    background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #2c3e50); /* رنگ‌های تیره نزدیک به تم */
+    background-size: 400% 400%;
+    animation: gradientBG 25s ease infinite; /* سرعت انیمیشن (عدد بالاتر = کندتر) */
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+body.login {
+    /* تنظیم عکس پس‌زمینه */
+    background-image: url('../img/login_background.jpg'); /* <-- مطمئن شو مسیر عکس درسته */
+    background-size: cover; /* پوشاندن کل صفحه */
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 100vh; /* ارتفاع کامل صفحه */
+    display: flex; /* استفاده از flexbox برای وسط‌چین کردن */
+    align-items: center; /* وسط‌چین عمودی */
+    justify-content: center; /* وسط‌چین افقی */
+}
+
+/* استایل کادر فرم لاگین */
+.login #container {
+    /* حذف پس‌زمینه پیش‌فرض */
+    background: none;
+    border: none;
+    box-shadow: none;
+    width: 100%;
+    max-width: 400px; /* حداکثر عرض فرم */
+}
+
+.login #content {
+    background: rgba(255, 255, 255, 0.9); /* پس‌زمینه سفید نیمه‌شفاف */
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* (اختیاری) استایل عنوان و فیلدها */
+.login #content h1 {
+    color: #333; /* رنگ تیره‌تر برای عنوان */
+    text-align: center;
+    margin-bottom: 25px;
+}
+ .login label {
+     color: #555; /* رنگ لیبل ها */
+ }
+
+.login .submit-row input[type=submit] {
+    width: 100%; /* دکمه تمام عرض */
+    padding: 12px;
+    background-color: #5D3FD3; /* رنگ بنفش (می‌تونی عوض کنی) */
+    border: none;
+}
+ .login .submit-row input[type=submit]:hover {
+     background-color: #4C33A3; /* بنفش تیره‌تر */
+ }
+
+/* (اختیاری) مخفی کردن لینک "View site" */
+.login #content .view-site-link {
+    display: none;
+}

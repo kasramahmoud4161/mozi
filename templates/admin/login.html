@@ -1,0 +1,9 @@
+{# mozi/templates/admin/login.html #}
+{% extends "admin/login.html" %}
+{% load static %}
+
+{# اضافه کردن CSS سفارشی به انتهای استایل‌ها #}
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin_custom.css' %}">
+{% endblock %}

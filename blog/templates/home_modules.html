@@ -1,0 +1,147 @@
+{% extends 'base.html' %} 
+
+{% block title %}هاب امکانات و ماژول‌های سامانه{% endblock %}
+
+{% block content %}
+    
+    <style>
+        /* -------------------- استایل‌های مورد نیاز برای این صفحه -------------------- */
+        
+        .page-title-box {
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .page-title-box h2 {
+            color: #2c3e50;
+            font-size: 26px;
+            font-weight: 700;
+        }
+
+        /* -------------------- گرید ماژول‌ها -------------------- */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .module-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 6px 20px rgba(44, 62, 80, 0.08);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 5px solid; 
+            position: relative;
+            text-decoration: none; /* برای لینک بودن کارت */
+        }
+        
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(44, 62, 80, 0.15);
+        }
+
+        .module-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .module-card h4 {
+            font-size: 20px;
+            color: #34495e;
+            margin-bottom: 10px;
+        }
+
+        .module-card p {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            min-height: 40px; 
+        }
+        
+        .module-link {
+            display: inline-block;
+            padding: 8px 20px;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        /* نشان جدید */
+        .coming-soon-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: #e74c3c; 
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        /* -------------------- رنگ‌های ماژول‌های مختلف -------------------- */
+        
+        /* ماژول نمرات */
+        .grades-module { border-color: #f39c12; }
+        .grades-module .module-icon { color: #f39c12; }
+        .grades-module .module-link { background-color: #f39c12; }
+        .grades-module .module-link:hover { background-color: #e67e22; }
+
+        /* ماژول حضور و غیاب */
+        .attendance-module { border-color: #2ecc71; }
+        .attendance-module .module-icon { color: #2ecc71; }
+        .attendance-module .module-link { background-color: #2ecc71; }
+        .attendance-module .module-link:hover { background-color: #27ae60; }
+        
+        /* ماژول تکالیف (بزودی) */
+        .assignments-module { border-color: #1abc9c; }
+        .assignments-module .module-icon { color: #1abc9c; }
+        .assignments-module .module-link { background-color: #1abc9c; }
+        .assignments-module .module-link:hover { background-color: #16a085; }
+        
+    </style>
+
+    <div class="page-title-box">
+        <h2>هاب امکانات سامانه (Modules Hub)</h2>
+        <p style="color: #7f8c8d; font-size: 15px;">دسترسی سریع به سیستم‌های مدیریت اطلاعات دانش‌آموزی (MIS)</p>
+    </div>
+
+    <div class="modules-grid">
+        
+        <a href="{% url 'blog:grade_report' %}" class="module-card grades-module">
+            <span class="module-icon">&#127979;</span> <h4>گزارش نمرات و کارنامه</h4>
+            <p>مشاهده نمرات نهایی، معدل و سوابق آزمون‌های ثبت شده.</p>
+            <span class="module-link">مشاهده کارنامه</span>
+        </a>
+
+        <a href="{% url 'blog:attendance_manage' %}" class="module-card attendance-module">
+            <span class="module-icon">&#128202;</span> <h4>ثبت حضور و غیاب روزانه</h4>
+            <p>ثبت و مدیریت وضعیت حضور دانش‌آموزان (برای معلم/مدیر).</p>
+            <span class="module-link">ورود به ماژول</span>
+        </a>
+
+        <div class="module-card assignments-module">
+            <span class="coming-soon-badge">بزودی</span>
+            <span class="module-icon">&#128218;</span> <h4>تکالیف و محتوای آموزشی</h4>
+            <p>بارگذاری تکالیف، منابع آموزشی و برنامه‌های هفتگی کلاسی.</p>
+            <span class="module-link" style="background-color: #95a5a6; cursor: default;">بزودی فعال می‌شود</span>
+        </div>
+        
+        <div class="module-card" style="border-color: #9b59b6;">
+            <span class="coming-soon-badge">بزودی</span>
+            <span class="module-icon" style="color: #9b59b6;">&#128233;</span> <h4>پیام‌رسان و اطلاعیه‌ها</h4>
+            <p>ارسال پیام‌های خصوصی و ثبت اطلاعیه‌های عمومی مدرسه.</p>
+            <span class="module-link" style="background-color: #95a5a6; cursor: default;">بزودی فعال می‌شود</span>
+        </div>
+
+    </div>
+
+{% endblock %}

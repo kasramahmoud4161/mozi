@@ -1,0 +1,89 @@
+{% extends 'base.html' %} 
+
+{% block title %}ایجاد تکلیف جدید{% endblock %}
+
+{% block content %}
+    <style>
+        /* استفاده از استایل‌های عمومی فرم‌ها */
+        .admin-form-container {
+            max-width: 650px;
+            margin: 30px auto;
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(44, 62, 80, 0.15);
+            padding: 40px;
+            border-top: 5px solid var(--warning-color); 
+        }
+        .admin-form-container h2 {
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 800;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            font-size: 24px;
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            font-size: 14px;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: block; 
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: var(--card-bg);
+            color: var(--text-dark);
+            direction: rtl; 
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--warning-color);
+            box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.2);
+            outline: none;
+        }
+        .submit-button {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--warning-color); 
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+        .submit-button:hover { background-color: #e67e22; }
+    </style>
+
+    <div class="admin-form-container">
+        <h2>ایجاد تکلیف جدید</h2>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST" action="{% url 'blog:assignment_create' %}" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            
+            {% for field in form %}
+                <div class="form-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {% if field.errors %}<div class="text-danger">{{ field.errors }}</div>{% endif %}
+                </div>
+            {% endfor %}
+
+            <button type="submit" class="submit-button">ثبت و انتشار تکلیف</button>
+        </form>
+    </div>
+{% endblock %}

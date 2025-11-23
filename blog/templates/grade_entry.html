@@ -1,0 +1,109 @@
+{% extends 'base.html' %} 
+
+{% block title %}ثبت نمرات دانش‌آموزان{% endblock %}
+
+{% block content %}
+    
+    <h2 class="page-title" style="color: #f39c12; border-color: #f39c12;">ثبت نمرات دانش‌آموزان</h2>
+    
+    <div class="grade-entry-card">
+        
+        <form method="GET" action="{% url 'blog:grade_entry' %}">
+            <div class="filter-bar">
+                
+                <div class="filter-group">
+                    {{ filter_form.course.label_tag }}
+                    {{ filter_form.course }}
+                </div>
+                
+                <div class="filter-group">
+                    {{ filter_form.exam.label_tag }}
+                    {{ filter_form.exam }}
+                </div>
+                
+                <button type="submit" class="action-button">جستجو و لود لیست</button>
+            </div>
+        </form>
+
+        <hr style="margin: 25px 0; border-color: #ecf0f1;">
+
+        {% if formset and selected_exam %}
+            
+            <h4 style="margin-bottom: 20px;">ثبت نمره برای: {{ selected_exam.get_exam_type_display }} - درس {{ selected_course.name }} (حداکثر {{ max_score }} نمره)</h4>
+
+            <form method="POST" action="{% url 'blog:grade_entry' %}?course={{ selected_course.id }}&exam={{ selected_exam.id }}">
+                {% csrf_token %}
+                
+                <div style="margin-top: 30px; text-align: center;">
+                    <button type="submit" class="action-button" style="width: 30%;">ذخیره نهایی نمرات</button>
+                </div>
+            </form>
+            
+        {% elif request.GET %}
+            <p style="text-align: center; color: #7f8c8d;">هیچ دانش‌آموزی در سطح درس انتخاب شده یافت نشد یا نتایج نامعتبر است.</p>
+        {% else %}
+             <p style="text-align: center; color: #7f8c8d;">برای شروع، درس و آزمون مورد نظر را انتخاب کنید.</p>
+        {% endif %}
+
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            const courseSelect = $("#id_course");
+            const examSelect = $("#id_exam");
+            const initialExamValue = examSelect.val();
+
+            examSelect.prop('disabled', true);
+            
+            function loadExams(courseId, initialValue) {
+                if (!courseId) {
+                    examSelect.html('<option value="">--- ابتدا درس را انتخاب کنید ---</option>');
+                    examSelect.prop('disabled', true);
+                    return;
+                }
+                
+                $.ajax({
+                    url: "{% url 'blog:ajax_load_exams' %}", // FIX: افزودن Namespace
+                    data: {
+                        'course_id': courseId 
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        examSelect.html('');
+                        
+                        if (data.length === 0) {
+                             examSelect.append('<option value="">آزمونی برای این درس تعریف نشده است</option>');
+                        } else {
+                            examSelect.append('<option value="">--- آزمون را انتخاب کنید ---</option>');
+                            $.each(data, function(key, value) {
+                                examSelect.append('<option value="' + value.id + '">' + value.name + '</option>');
+                            });
+                        }
+                        
+                        if (initialValue) {
+                            examSelect.val(initialValue);
+                        }
+                        
+                        examSelect.prop('disabled', false);
+                    },
+                    error: function() {
+                        examSelect.html('<option value="">خطا در بارگذاری آزمون‌ها</option>');
+                        examSelect.prop('disabled', false);
+                    }
+                });
+            }
+
+            courseSelect.change(function() {
+                const courseId = $(this).val();
+                loadExams(courseId, null);
+            });
+            
+            if (courseSelect.val()) {
+                loadExams(courseSelect.val(), initialExamValue);
+            }
+        });
+    </script>
+    
+{% endblock %}

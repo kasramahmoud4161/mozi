@@ -1,0 +1,65 @@
+{% extends 'base.html' %} 
+
+{% block title %}شروع مکالمه جدید{% endblock %}
+
+{% block content %}
+    <style>
+        .chat-container {
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        .user-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.2s;
+        }
+        .user-item:hover {
+            background-color: var(--bg-light);
+        }
+        .user-info {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        .start-chat-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .start-chat-btn:hover {
+            background-color: #27ae60;
+        }
+    </style>
+
+    <div class="chat-container">
+        <h2 style="color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-bottom: 20px;">شروع مکالمه جدید</h2>
+        <p style="color: #7f8c8d; margin-bottom: 20px;">کاربر مورد نظر برای شروع مکالمه را انتخاب کنید.</p>
+        
+        <div class="user-list">
+            {% for user in users_list %}
+                <div class="user-item">
+                    <span class="user-info">
+                        {{ user.profile.first_name }} {{ user.profile.last_name }}
+                        <small style="color: #7f8c8d;">({{ user.phone }})</small>
+                    </span>
+                    <a href="{% url 'chat:start_chat' user_id=user.id %}" class="start-chat-btn">
+                        <i class="fas fa-paper-plane"></i> شروع چت
+                    </a>
+                </div>
+            {% empty %}
+                <p style="text-align: center; color: #7f8c8d;">کاربر دیگری برای گفتگو یافت نشد.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

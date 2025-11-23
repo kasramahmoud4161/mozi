@@ -1,0 +1,197 @@
+{% extends 'base.html' %} 
+
+{% block title %}گزارش نمرات و کارنامه{% endblock %}
+
+{% block content %}
+    
+    <style>
+        /* -------------------- استایل‌های عمومی -------------------- */
+        .report-container {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            margin-top: 20px;
+        }
+
+        /* -------------------- بخش فیلترها (ویژه معلم/ادمین) -------------------- */
+        .filter-bar {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            min-width: 180px;
+        }
+        
+        .filter-group label {
+            font-size: 14px;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .filter-group select, .filter-group input {
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            direction: rtl; 
+            min-height: 44px;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .search-button {
+            padding: 10px 20px;
+            background-color: var(--primary-color); 
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            min-height: 44px;
+        }
+        .search-button:hover { background-color: #2980b9; }
+
+        /* -------------------- بخش اطلاعات دانش‌آموز -------------------- */
+        .student-info-box {
+            background-color: var(--bg-light);
+            padding: 15px 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .student-info-box p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: var(--text-dark);
+        }
+        .student-info-box span {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        .average-score {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--secondary-color); /* سبز برای معدل خوب */
+        }
+
+        /* -------------------- جدول نمرات -------------------- */
+        .grades-table-wrapper { overflow-x: auto; }
+        .grades-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+            margin-top: 15px;
+        }
+        .grades-table th, .grades-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 15px;
+            vertical-align: middle;
+            color: var(--text-dark);
+        }
+        .grades-table th {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            opacity: 0.8;
+            font-weight: 600;
+            text-align: right;
+        }
+        
+        .score-value {
+            font-weight: 700;
+        }
+        .failed-score {
+            color: var(--danger-color); /* قرمز برای نمره پایین‌تر از حد نصاب */
+        }
+        
+        /* -------------------- واکنش‌گرایی موبایل -------------------- */
+        @media (max-width: 650px) {
+            .filter-bar { flex-direction: column; align-items: stretch; }
+            .student-info-box { flex-direction: column; align-items: flex-start; }
+            .filter-group { width: 100%; }
+        }
+    </style>
+
+    <h2 class="page-title" style="color: var(--primary-color); border-color: var(--primary-color);">گزارش نمرات و کارنامه</h2>
+
+    <div class="report-container">
+        
+        {% if request.user.is_admin or request.user.is_staff %}
+            <form method="GET" action="{% url 'blog:grade_report' %}">
+                <div class="filter-bar">
+                    
+                    <div class="filter-group">
+                        {{ form.level.label_tag }}
+                        {{ form.level }}
+                    </div>
+                    
+                    <div class="filter-group">
+                        {{ form.student.label_tag }}
+                        {{ form.student }} 
+                    </div>
+
+                    <div class="filter-group">
+                        {{ form.exam_type.label_tag }}
+                        {{ form.exam_type }}
+                    </div>
+                    
+                    <button type="submit" class="search-button">مشاهده گزارش</button>
+                </div>
+            </form>
+        {% endif %}
+
+        {% if student_data %}
+            <div class="student-info-box">
+                <p>نام دانش‌آموز: <span>{{ student_data.first_name }} {{ student_data.last_name }}</span></p>
+                <p>سطح/پایه: <span>{{ student_data.level_display }}</span></p>
+                <p>کد ملی: <span>{{ student_data.n_code }}</span></p>
+                <p>معدل کل: <span class="average-score">{{ student_data.average|default:"—" }}</span></p>
+            </div>
+        {% endif %}
+        
+        {% if students_grades %}
+            <div class="grades-table-wrapper">
+                <table class="grades-table">
+                    <thead>
+                        <tr>
+                            <th>نام درس (Course)</th>
+                            <th>نوع آزمون (Exam Type)</th>
+                            <th>نمره کسب شده</th>
+                            <th>سطح</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for grade in students_grades %}
+                        <tr>
+                            <td>{{ grade.exam.course.name }}</td>
+                            <td>{{ grade.exam.get_exam_type_display }}</td>
+                            <td>
+                                <span class="score-value {% if grade.score < 10 %}failed-score{% endif %}">{{ grade.score }}</span>
+                            </td>
+                            <td>{{ grade.level }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p style="text-align: center; color: var(--text-dark); opacity: 0.7; padding-top: 20px;">برای این دوره/دانش‌آموز، نمره‌ای ثبت نشده است یا فیلترها اعمال نشده‌اند.</p>
+        {% endif %}
+
+    </div>
+
+{% endblock %}

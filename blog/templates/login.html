@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ورود به سامانه مدرسه</title>
+    
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.0.3/Vazirmatn.css" rel="stylesheet">
+
+    <style>
+        /* CSS قبلی شما دست نخورده باقی می‌ماند */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Vazirmatn', sans-serif; background-color: #f4f7f6; direction: rtl; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .login-container { width: 100%; max-width: 400px; padding: 20px; }
+        .login-card { background: #ffffff; border-radius: 16px; padding: 35px; box-shadow: 0 10px 30px rgba(44, 62, 80, 0.1); text-align: center; }
+        .logo-area { margin-bottom: 30px; }
+        .logo-area h1 { color: #3498db; font-size: 28px; margin-bottom: 5px; font-weight: 700; }
+        .logo-area p { color: #7f8c8d; font-size: 14px; }
+        .input-group { position: relative; margin-bottom: 25px; text-align: right; }
+        .input-group label { display: block; font-size: 13px; color: #2c3e50; margin-bottom: 8px; font-weight: 500; }
+        .login-card input[type="text"], .login-card input[type="password"] {
+            width: 100%; padding: 12px 15px; border: 1px solid #dcdde1; border-radius: 8px; font-size: 16px; color: #34495e; transition: border-color 0.3s; text-align: left; direction: ltr; 
+        }
+        .login-card input:focus { border-color: #3498db; outline: none; box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2); }
+        .login-button { width: 100%; padding: 14px; background-color: #3498db; color: white; border: none; border-radius: 8px; font-size: 18px; font-weight: 700; cursor: pointer; transition: background-color 0.3s, transform 0.2s; margin-top: 15px; }
+        .login-button:hover { background-color: #2980b9; transform: translateY(-2px); }
+        .forgot-password { text-align: left; margin-bottom: 20px; font-size: 14px; }
+        .forgot-password a { color: #3498db; text-decoration: none; transition: color 0.3s; }
+        .register-link { margin-top: 25px; font-size: 14px; }
+        .register-link a { color: #2ecc71; text-decoration: none; transition: color 0.3s; font-weight: 500; }
+        .register-link a:hover { text-decoration: underline; }
+        .error-message { color: #e74c3c; font-size: 14px; font-weight: 600; margin-bottom: 10px; }
+        @media (max-width: 500px) { .login-card { padding: 30px 20px; box-shadow: none; } }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-card">
+            
+            <div class="logo-area">
+                <h1>سامانه آموزشی</h1>
+                <p>به سیستم مدیریت مدرسه خوش آمدید</p>
+            </div>
+            
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="error-message">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST" action="{% url 'blog:login' %}">
+                {% csrf_token %} 
+                
+                {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        <p class="error-message" style="margin-bottom: 20px;">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+
+                <div class="input-group">
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                </div>
+
+                <div class="input-group">
+                    {{ form.password.label_tag }}
+                    {{ form.password }}
+                </div>
+
+                <div class="forgot-password">
+                    <a href="#">رمز عبور را فراموش کرده‌ام</a>
+                </div>
+
+                <button type="submit" class="login-button">ورود به پنل کاربری</button>
+            </form>
+            
+            <div class="register-link">
+                هنوز حساب ندارید؟ <a href="{% url 'blog:register' %}">ثبت نام کنید</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

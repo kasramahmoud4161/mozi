@@ -1,0 +1,50 @@
+{% extends 'base.html' %} 
+
+{% block title %}مدیریت حضور و غیاب{% endblock %}
+
+{% block content %}
+    
+    <h2 class="page-title" style="color: #3498db; border-color: #3498db;">مدیریت روزانه حضور و غیاب</h2>
+
+    <div class="attendance-card">
+        
+        <form method="GET" action="{% url 'blog:attendance_manage' %}">
+            <div class="filter-bar">
+                <div class="filter-group">
+                    <label for="attendance-date">تاریخ مورد نظر</label>
+                    <input type="text" id="attendance-date" name="attendance_date" value="{{ filter_date|default:'' }}" placeholder="مانند: 1403/05/10" required>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="class-level">انتخاب سطح/کلاس</label>
+                    <select id="class-level" name="class_level">
+                        {% for key, value in STATUS_LEVELS %}
+                            <option value="{{ key }}" {% if selected_level == key %}selected{% endif %}>{{ value }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="action-button">جستجو و لود لیست</button>
+            </div>
+        </form>
+
+        <hr style="margin: 25px 0; border-color: #ecf0f1;">
+
+        {% if formset %}
+            
+            <form method="POST" action="{% url 'blog:attendance_manage' %}?class_level={{ selected_level }}&attendance_date={{ filter_date }}">
+                {% csrf_token %}
+                
+                {{ formset.management_form }} 
+
+                <div style="margin-top: 30px; text-align: center;">
+                    <button type="submit" class="action-button" style="width: 30%; background-color: #2ecc71;">ذخیره نهایی وضعیت حضور و غیاب</button>
+                </div>
+            </form>
+            
+        {% else %}
+            <p style="text-align: center; color: #e74c3c;">هیچ کاربری در سطح انتخاب شده یافت نشد.</p>
+        {% endif %}
+
+    </div>
+
+    {% endblock %}

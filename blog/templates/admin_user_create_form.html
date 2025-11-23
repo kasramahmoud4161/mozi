@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ title|default:"ثبت کاربر جدید" }}
+{% endblock %}
+
+{% block content %}
+<style>
+    .styled-form {
+        width: 100%;
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 25px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        color: #333;
+    }
+    .styled-form h4 {
+        color: #2c3e50;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    .form-field {
+        display: flex;
+        flex-direction: column;
+    }
+    .form-field label {
+        font-weight: 600;
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+        color: #555;
+    }
+    .form-field input,
+    .form-field select {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box; /* Important for padding to work correctly */
+        font-family: inherit;
+        font-size: 0.95rem;
+    }
+    .form-button {
+        background-color: #3498db;
+        color: white;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        margin-top: 25px;
+        transition: background-color 0.3s ease;
+    }
+    .form-button:hover {
+        background-color: #2980b9;
+    }
+
+    /* --- (جدید) استایل برای نمایش خطاها --- */
+    .form-field .errorlist {
+        list-style-type: none;
+        padding: 0;
+        margin: 5px 0 0 0;
+        color: #e74c3c; /* Red color for errors */
+        font-size: 0.85rem;
+        font-weight: 600;
+    }
+    .form-non-field-errors {
+        background-color: #fbeae5;
+        border: 1px solid #e74c3c;
+        color: #c0392b;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+    .form-non-field-errors .errorlist {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+    /* --- پایان استایل خطاها --- */
+
+</style>
+
+<form class="styled-form" method="POST" action="{% url 'blog:admin_user_create' %}" novalidate>
+    {% csrf_token %}
+    
+    <h2 class="page-title" style="color: #2c3e50; border-color: #3498db; text-align: center; margin-bottom: 25px;">فرم ثبت کاربر جدید (مدیریت)</h2>
+
+    {% if form.non_field_errors %}
+        <div class="form-non-field-errors">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
+
+    <h4>اطلاعات شخصی</h4>
+    <div class="form-grid">
+        <div class="form-field">
+            {{ form.first_name.label_tag }}
+            {{ form.first_name }}
+            {{ form.first_name.errors }}
+        </div>
+        <div class="form-field">
+            {{ form.last_name.label_tag }}
+            {{ form.last_name }}
+            {{ form.last_name.errors }}
+        </div>
+        <div class="form-field">
+            {{ form.fName.label_tag }}
+            {{ form.fName }}
+            {{ form.fName.errors }}
+        </div>
+        <div class="form-field">
+            {{ form.n_code.label_tag }}
+            {{ form.n_code }}
+            {{ form.n_code.errors }}
+        </div>
+        <div class="form-field">
+            {{ form.phone.label_tag }}
+            {{ form.phone }}
+            {{ form.phone.errors }}
+        </div>
+        <div class="form-field">
+            {{ form.level.label_tag }}
+            {{ form.level }}
+            {{ form.level.errors }}
+        </div>
+        <div class="form-field">
+            {{ form.followName.label_tag }}
+            {{ form.followName }}
+            {{ form.followName.errors }}
+        </div>
+        <div class="form-field">
+            {{ form.role.label_tag }}
+            {{ form.role }}
+            {{ form.role.errors }}
+        </div>
+    </div>
+    
+    <h4>اطلاعات ورود</h4>
+    <div class="form-grid">
+        <div class="form-field">
+            {{ form.password.label_tag }}
+            {{ form.password }}
+            {{ form.password.errors }}
+        </div>
+        <div class="form-field">
+            {{ form.password_confirm.label_tag }}
+            {{ form.password_confirm }}
+            {{ form.password_confirm.errors }}
+        </div>
+    </div>
+
+    <div>
+        <button type="submit" class="form-button">ثبت کاربر</button>
+    </div>
+</form>
+
+{% endblock %}

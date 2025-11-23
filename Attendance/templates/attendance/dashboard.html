@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block title %}داشبورد اصلی{% endblock %}
+
+{% block content %}
+
+<style>
+    .dashboard-header {
+        font-size: 28px; font-weight:700; color: var(--text-dark); margin-bottom: 25px;
+    }
+    .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+        gap: 25px;
+        margin-top: 20px;
+    }
+    .stat-card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        transition: transform 0.3s, box-shadow 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    .stat-icon {
+        font-size: 36px;
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .stat-info h3 {
+        margin:0; font-size:18px; font-weight:700; color: var(--text-dark);
+    }
+    .stat-info p {
+        margin:5px 0 0 0; font-size:14px; color: #7f8c8d;
+    }
+</style>
+
+<h2 class="dashboard-header">📊 داشبورد سامانه مدارس</h2>
+
+<div class="stat-grid">
+    <div class="stat-card" style="background-color: #3498db;">
+        <div class="stat-icon"><i class="fas fa-user-graduate"></i></div>
+        <div class="stat-info">
+            <h3>{{ total_students }}</h3>
+            <p>تعداد کل دانش‌آموزان</p>
+        </div>
+    </div>
+
+    <div class="stat-card" style="background-color: #2ecc71;">
+        <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+        <div class="stat-info">
+            <h3>{{ present_today }}</h3>
+            <p>حاضر امروز</p>
+        </div>
+    </div>
+
+    <div class="stat-card" style="background-color: #e74c3c;">
+        <div class="stat-icon"><i class="fas fa-user-times"></i></div>
+        <div class="stat-info">
+            <h3>{{ absent_today }}</h3>
+            <p>غایب امروز</p>
+        </div>
+    </div>
+
+    <div class="stat-card" style="background-color: #f39c12;">
+        <div class="stat-icon"><i class="fas fa-list-alt"></i></div>
+        <div class="stat-info">
+            <h3>{{ total_attendance }}</h3>
+            <p>کل رکوردهای حضور و غیاب</p>
+        </div>
+    </div>
+</div>
+
+<!-- نمودار وضعیت امروز -->
+<div style="margin-top:40px;background: var(--card-bg); padding:25px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.05);">
+    <h3 style="margin-bottom:20px;color: var(--text-dark);">نمودار حضور و غیاب امروز</h3>
+    <canvas id="attendanceChart" style="width:100%;max-width:600px;"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('attendanceChart').getContext('2d');
+    const attendanceChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['حاضر', 'غایب'],
+            datasets: [{
+                label: 'حضور و غیاب',
+                data: [{{ present_today }}, {{ absent_today }}],
+                backgroundColor: ['#2ecc71', '#e74c3c'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'bottom' }
+            }
+        }
+    });
+</script>
+
+{% endblock %}

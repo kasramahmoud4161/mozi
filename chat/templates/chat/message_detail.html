@@ -1,0 +1,142 @@
+{% extends 'base.html' %} 
+
+{% block title %}مکالمه{% endblock %}
+
+{% block content %}
+    <style>
+        .chat-detail-container {
+            max-width: 700px;
+            margin: 30px auto;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 80vh; /* برای شبیه‌سازی پنجره چت */
+        }
+        .chat-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--primary-color);
+            color: white;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+        .messages-area {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .message-bubble {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            font-size: 15px;
+            position: relative;
+            word-wrap: break-word;
+        }
+        .message-bubble.sent {
+            background-color: var(--secondary-color);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+        .message-bubble.received {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+        .message-sender {
+            font-size: 11px;
+            font-weight: 600;
+            opacity: 0.7;
+            margin-bottom: 5px;
+        }
+        .message-time {
+            font-size: 10px;
+            opacity: 0.6;
+            margin-top: 5px;
+            display: block;
+            text-align: right;
+        }
+        .chat-input-area {
+            padding: 15px 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        .chat-input-area textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            resize: none;
+            margin-bottom: 10px;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            direction: rtl; 
+        }
+        .send-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    </style>
+
+    <div class="chat-detail-container">
+        <div class="chat-header">
+            <h4>مکالمه با: 
+                {% for participant in conversation.participants.all %}
+                    {% if participant != request.user %}
+                        {{ participant.get_full_name }}
+                    {% endif %}
+                {% endfor %}
+            </h4>
+        </div>
+
+        <div class="messages-area" id="messages-area">
+            {% for message in messages %}
+                {% if message.sender == request.user %}
+                    <div class="message-bubble sent">
+                        <span class="message-sender">شما</span>
+                        {{ message.content|linebreaksbr }}
+                        <span class="message-time">{{ message.get_jalali_timestamp }}</span>
+                    </div>
+                {% else %}
+                    <div class="message-bubble received">
+                        <span class="message-sender">{{ message.sender.get_full_name }}</span>
+                        {{ message.content|linebreaksbr }}
+                        <span class="message-time">{{ message.get_jalali_timestamp }}</span>
+                    </div>
+                {% endif %}
+            {% empty %}
+                <p style="text-align: center; color: #7f8c8d;">این ابتدای مکالمه شماست.</p>
+            
+            {% endfor %}
+        </div>
+
+        <div class="chat-input-area">
+            
+            <form method="POST" action="{% url 'chat:chat_detail' conversation_id=conversation.id %}">
+                {% csrf_token %}
+                
+                {{ form.content }}
+                
+                <button type="submit" class="send-button">ارسال پیام</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const messagesArea = document.getElementById("messages-area");
+            messagesArea.scrollTop = messagesArea.scrollHeight;
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,158 @@
+{% extends 'base.html' %} 
+
+{% block title %}پروفایل کاربری{% endblock %}
+
+{% block content %}
+<style>
+    /* -------------------- استایل‌های کارت پروفایل -------------------- */
+    .profile-card {
+        max-width: 600px;
+        margin: 40px auto;
+        background-color: #ffffff;
+        border-radius: 16px; 
+        box-shadow: 0 10px 30px rgba(44, 62, 80, 0.1); 
+        padding: 40px;
+        border-top: 5px solid #3498db; 
+    }
+    .profile-header {
+        text-align: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #ecf0f1;
+    }
+    .profile-header h3 {
+        color: #2c3e50;
+        font-weight: 800;
+        margin-top: 10px;
+        font-size: 26px;
+    }
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+        background-color: #3498db;
+        color: white;
+        border-radius: 50%;
+        margin: 0 auto 10px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        font-weight: 700;
+        border: 4px solid #f4f7f6;
+    }
+    .profile-details {
+        margin-top: 20px;
+    }
+    .detail-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 0;
+        border-bottom: 1px dashed #ecf0f1;
+    }
+    .detail-item:last-child {
+        border-bottom: none;
+    }
+    .detail-label {
+        color: #7f8c8d;
+        font-weight: 500;
+        font-size: 15px;
+        width: 150px;
+        flex-shrink: 0;
+    }
+    .detail-value {
+        color: #2c3e50;
+        font-weight: 600;
+        text-align: left;
+    }
+    .edit-button-container {
+        text-align: center;
+        margin-top: 30px;
+    }
+    .edit-button {
+        display: inline-block;
+        padding: 12px 30px;
+        background-color: #2ecc71;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 700;
+        text-decoration: none;
+        transition: background-color 0.3s, transform 0.1s;
+    }
+    .edit-button:hover {
+        background-color: #27ae60;
+        transform: translateY(-1px);
+    }
+
+    /* -------------------- واکنش‌گرایی موبایل -------------------- */
+    @media (max-width: 650px) {
+        .profile-card {
+            margin: 0;
+            border-radius: 0;
+            box-shadow: none;
+            padding: 20px;
+        }
+    }
+</style>
+
+<div class="profile-card">
+    <div class="profile-header">
+        
+        <div class="profile-avatar">
+            {% if user.profile.first_name %}{{ user.profile.first_name|first }}{% else %}U{% endif %}
+        </div>
+
+        <h3>
+            {% if user.profile.first_name and user.profile.last_name %}
+                {{ user.profile.first_name }} {{ user.profile.last_name }}
+            {% else %}
+                کاربر سامانه ({{ user.phone }})
+            {% endif %}
+        </h3>
+    </div>
+    
+    <div class="profile-details">
+        
+        <div class="detail-item">
+            <span class="detail-label">&#128222; شماره تماس</span>
+            <span class="detail-value">{{ user.phone }}</span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">&#128170; کد ملی</span>
+            <span class="detail-value">{{ user.n_code }}</span>
+        </div>
+
+        <div class="detail-item">
+            <span class="detail-label">&#128104; نام پدر</span>
+            <span class="detail-value">
+                {% if user.profile.fName %}{{ user.profile.fName }}{% else %}ثبت نشده{% endif %}
+            </span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">&#127979; سطح/کلاس</span>
+            <span class="detail-value">{{ user.profile.get_level_display }}</span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">&#128101; مسئول پیگیری</span>
+            <span class="detail-value">
+                {% if user.profile.followName %}{{ user.profile.followName }}{% else %}ثبت نشده{% endif %}
+            </span>
+        </div>
+        
+        <div class="detail-item">
+            <span class="detail-label">&#9881; وضعیت دسترسی</span>
+            <span class="detail-value" style="color: {% if user.is_admin %}#e74c3c{% else %}#3498db{% endif %};">
+                {% if user.is_admin %}مدیر سیستم{% else %}کاربر عادی{% endif %}
+            </span>
+        </div>
+
+    </div>
+
+    <div class="edit-button-container">
+        <a href="{% url 'blog:profile_update' %}" class="edit-button">
+            &#9998; ویرایش اطلاعات
+        </a>
+    </div>
+</div>
+{% endblock %}

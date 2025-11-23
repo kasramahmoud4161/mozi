@@ -1,0 +1,17 @@
+{% extends "admin/base.html" %}
+{% load static %} {# <-- مطمئن شو این خط اول فایل (بعد از extends) هست #}
+
+{% block title %}{{ title }} | سامانه مدیریت مدرسه{% endblock %}
+
+{# اضافه کردن فایل CSS سفارشی #}
+{% block extrastyle %}
+    {{ block.super }} {# حفظ استایل‌های قبلی جازمین #}
+    {# <-- مطمئن شو این خط دقیقا همین شکلی و داخل block extrastyle هست #}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin_custom.css' %}">
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">پنل مدیریت مدرسه سما</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

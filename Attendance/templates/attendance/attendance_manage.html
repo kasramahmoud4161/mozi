@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}مدیریت حضور و غیاب{% endblock %}
+
+{% block content %}
+
+<style>
+    .page-title { font-size: 28px; font-weight:700; margin-bottom:20px; color: var(--text-dark); }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    th, td {
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid var(--border-color);
+    }
+    th { background-color: var(--primary-color); color: white; }
+    tr:hover { background-color: rgba(0,0,0,0.03); }
+    select {
+        padding: 5px 10px;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+        cursor: pointer;
+        min-width: 100px;
+    }
+    .save-btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: var(--secondary-color);
+        color: white;
+        font-weight: 600;
+        border-radius: 6px;
+        cursor: pointer;
+        border: none;
+        transition: background-color 0.3s;
+    }
+    .save-btn:hover { background-color: #28b463; }
+</style>
+
+<h2 class="page-title">📅 مدیریت حضور و غیاب - {{ today }}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        <thead>
+            <tr>
+                <th>ردیف</th>
+                <th>نام دانش‌آموز</th>
+                <th>وضعیت امروز</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ student.get_full_name|default:student.phone }}</td>
+                <td>
+                    <select name="status_{{ student.id }}">
+                        <option value="present" {% if attendance_today.student.id == 'present' %}selected{% endif %}>حاضر</option>
+                        <option value="absent" {% if attendance_today.student.id == 'absent' %}selected{% endif %}>غایب</option>
+                    </select>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <button type="submit" class="save-btn">💾 ثبت وضعیت حضور و غیاب</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,186 @@
+{% extends 'base.html' %} 
+
+{% block title %}گزارش و تاریخچه حضور و غیاب{% endblock %}
+
+{% block content %}
+    
+    <style>
+        /* -------------------- استایل‌های مورد نیاز -------------------- */
+        .report-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            margin-top: 20px;
+        }
+
+        .search-filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+            align-items: flex-end;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .filter-group label {
+            font-size: 14px;
+            color: #34495e;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .filter-group input, .filter-group select {
+            padding: 10px 15px;
+            border: 1px solid #dcdde1;
+            border-radius: 8px;
+            font-size: 16px;
+            direction: rtl; 
+            min-height: 44px;
+        }
+
+        .search-button {
+            padding: 10px 15px;
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            min-height: 44px;
+        }
+        .search-button:hover { background-color: #e67e22; }
+
+        /* -------------------- جدول گزارش -------------------- */
+        .report-table-wrapper { overflow-x: auto; }
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+            margin-top: 15px;
+        }
+        .report-table th, .report-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ecf0f1;
+            font-size: 15px;
+            vertical-align: middle;
+        }
+        .report-table th {
+            background-color: #f4f7f6;
+            color: #7f8c8d;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+        /* کلاس‌های وضعیت برای نمایش رنگی */
+        .status-Absent { background-color: #fbe0e0; color: #e74c3c; } 
+        .status-Present { background-color: #e6f7e6; color: #2ecc71; }
+        .status-Late { background-color: #fff3e6; color: #f39c12; }
+        
+        .export-section { text-align: left; margin-top: 20px; }
+        .export-button {
+            background-color: #1abc9c;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        @media (max-width: 650px) {
+            .search-filter-grid { grid-template-columns: 1fr; }
+            .search-button { width: 100%; }
+        }
+    </style>
+
+    <h2 class="page-title" style="color: #2c3e50; border-color: #f39c12;">گزارش و تاریخچه حضور و غیاب</h2>
+
+    <div class="report-card">
+        <h4>فیلترهای جستجو</h4>
+        
+    <form method="GET" action="{% url 'blog:attendance_report' %}">       
+         <div class="search-filter-grid">
+                
+                <div class="filter-group">
+                    {{ form.date_from.label_tag }}
+                    {{ form.date_from }}
+                </div>
+                
+                <div class="filter-group">
+                    {{ form.date_to.label_tag }}
+                    {{ form.date_to }}
+                </div>
+                
+                <div class="filter-group">
+                    {{ form.level.label_tag }}
+                    {{ form.level }}
+                </div>
+                
+                <div class="filter-group">
+                    {{ form.status.label_tag }}
+                    {{ form.status }}
+                </div>
+
+                <button type="submit" class="search-button">جستجوی گزارش</button>
+            </div>
+        </form>
+
+        <hr style="margin: 25px 0; border-color: #ecf0f1;">
+        
+        {% if report_data %}
+            <div class="report-table-wrapper">
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">#</th>
+                            <th>نام کاربر</th>
+                            <th>سطح/کلاس</th>
+                            <th>تاریخ (publish_date)</th>
+                            <th>وضعیت (presenceAbsence)</th>
+                            <th>زمان ثبت (created_at)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for record in report_data %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ record.user.profile.first_name }} {{ record.user.profile.last_name }}</td>
+                            <td>{{ record.user.profile.get_level_display }}</td> 
+                            <td>{{ record.publish_date }}</td>
+                            <td>
+                                <span class="status-badge status-{{ record.presenceAbsence }}">
+                                    {% if record.presenceAbsence == 'Present' %}حاضر
+                                    {% elif record.presenceAbsence == 'Absent' %}غایب
+                                    {% elif record.presenceAbsence == 'Late' %}تأخیر
+                                    {% endif %}
+                                </span>
+                            </td>
+                            <td>{{ record.created_at|date:"H:i" }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="export-section">
+                <button class="export-button">خروجی اکسل (Excel)</button>
+            </div>
+            
+        {% else %}
+            <p style="text-align: center; color: #7f8c8d;">هیچ رکوردی با فیلترهای اعمال شده پیدا نشد. لطفا فیلترها را تغییر دهید.</p>
+        {% endif %}
+    </div>
+
+{% endblock %}

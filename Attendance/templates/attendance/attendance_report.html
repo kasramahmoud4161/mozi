@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}گزارش حضور و غیاب{% endblock %}
+
+{% block content %}
+<style>
+    .page-title { font-size:28px; font-weight:700; margin-bottom:20px; color: var(--text-dark); }
+    .filter-form { display:flex; gap:10px; margin-bottom:20px; flex-wrap: wrap; }
+    .filter-form input { padding:8px 12px; border-radius:6px; border:1px solid var(--border-color); }
+    .filter-form button { padding:8px 15px; background-color: var(--secondary-color); color:white; border:none; border-radius:6px; cursor:pointer; }
+    .filter-form button:hover { background-color: #28b463; }
+    table { width:100%; border-collapse: collapse; background-color: var(--card-bg); border-radius:12px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.05); }
+    th, td { padding:15px; text-align:center; border-bottom:1px solid var(--border-color); }
+    th { background-color: var(--primary-color); color:white; }
+    tr:hover { background-color: rgba(0,0,0,0.03); }
+    .chart-container { margin-top: 30px; padding:20px; background-color: var(--card-bg); border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.05); }
+</style>
+
+<h2 class="page-title">📊 گزارش حضور و غیاب</h2>
+
+<form method="GET" class="filter-form">
+    <label>از تاریخ: <input type="date" name="start_date" value="{{ start_date }}"></label>
+    <label>تا تاریخ: <input type="date" name="end_date" value="{{ end_date }}"></label>
+    <button type="submit">اعمال فیلتر</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>ردیف</th>
+            <th>دانش‌آموز</th>
+            <th>کل روزها</th>
+            <th>حاضر</th>
+            <th>غایب</th>
+            <th>درصد حضور</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in data %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ item.student }}</td>
+            <td>{{ item.total_days }}</td>
+            <td>{{ item.present_days }}</td>
+            <td>{{ item.absent_days }}</td>
+            <td>{{ item.percent_present }}%</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="chart-container">
+    <canvas id="attendanceChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const labels = [{% for item in data %}'{{ item.student }}',{% endfor %}];
+    const presentData = [{% for item in data %}{{ item.present_days }},{% endfor %}];
+    const absentData = [{% for item in data %}{{ item.absent_days }},{% endfor %}];
+
+    const ctx = document.getElementById('attendanceChart').getContext('2d');
+    const attendanceChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                { label: 'حاضر', data: presentData, backgroundColor: 'var(--primary-color)' },
+                { label: 'غایب', data: absentData, backgroundColor: 'var(--danger-color)' }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { position: 'top' }, title: { display: true, text: 'وضعیت حضور و غیاب دانش‌آموزان' } },
+            scales: {
+                y: { beginAtZero: true, title: { display: true, text: 'تعداد روزها' } }
+            }
+        }
+    });
+</script>
+
+{% endblock %}

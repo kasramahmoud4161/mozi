@@ -1,0 +1,38 @@
+{% extends "admin/index.html" %} {# ارث‌بری از قالب پیش‌فرض ادمین (یا جازمین) #}
+{% load static %}
+
+{% block content %}
+    {# می‌تونیم یه پیام خوش‌آمدگویی اضافه کنیم #}
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+            <h3 class="card-title">
+                <i class="fas fa-tachometer-alt"></i>
+                خوش آمدید!
+            </h3>
+        </div>
+        <div class="card-body">
+            <p>سلام <strong>{{ user.get_full_name|default:user.phone }}</strong>، به پنل مدیریت مدرسه سما خوش آمدید.</p>
+            <p>از منوی سمت راست می‌توانید به بخش‌های مختلف دسترسی پیدا کنید.</p>
+            {# می‌تونیم لینک‌های سریع هم اینجا بذاریم #}
+            {# <a href="{% url 'admin:app_list' app_label='blog' %}" class="btn btn-primary">مدیریت کاربران</a> #}
+            {# <a href="{% url 'admin:blog_grade_changelist' %}" class="btn btn-info">مشاهده نمرات</a> #}
+        </div>
+    </div>
+
+    {# حالا محتوای پیش‌فرض داشبورد (لیست اپ‌ها) رو نمایش می‌دیم #}
+    {{ block.super }}
+{% endblock %}
+
+{# (اختیاری) اگه می‌خوایم چیزی به بالای صفحه (قبل از محتوا) اضافه کنیم #}
+{# {% block content_title %}
+    {{ block.super }}
+    <small>پنل مدیریت</small>
+{% endblock %} #}
+
+{# (اختیاری) اگه می‌خوایم چیزی به breadcrumbs (مسیر بالای صفحه) اضافه کنیم #}
+{# {% block breadcrumbs %}
+    <ol class="breadcrumb float-sm-right">
+        <li class="breadcrumb-item"><a href="{% url 'admin:index' %}">خانه</a></li>
+        <li class="breadcrumb-item active">داشبورد</li>
+    </ol>
+{% endblock %} #}

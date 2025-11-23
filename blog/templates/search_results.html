@@ -1,0 +1,85 @@
+{% extends 'base.html' %} 
+
+{% block title %}نتایج جستجو{% endblock %}
+
+{% block content %}
+    <style>
+        .search-results-container {
+            margin-top: 30px;
+        }
+        .search-results-container h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        .result-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .result-card a {
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--text-dark);
+            transition: color 0.3s;
+            display: block;
+        }
+        .result-card a:hover {
+            color: var(--primary-color);
+        }
+        .result-meta {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            color: #7f8c8d;
+        }
+    </style>
+
+    <div class="search-results-container">
+        <h2>نتایج جستجو برای: **{{ query }}**</h2>
+
+        {% if not results.users and not results.courses %}
+            <div class="no-results">
+                <i class="fas fa-box-open" style="font-size: 3em; margin-bottom: 15px;"></i>
+                <p>هیچ نتیجه‌ای با عبارت جستجوی شما یافت نشد.</p>
+            </div>
+        {% endif %}
+
+        {% if results.users %}
+            <h3><i class="fas fa-users"></i> کاربران و دانش‌آموزان</h3>
+            {% for user in results.users %}
+                <div class="result-card">
+                    <a href="{% url 'blog:profile' user.id %}">
+                        {{ user.profile.first_name }} {{ user.profile.last_name }} ({{ user.phone }})
+                    </a>
+                    <div class="result-meta">
+                        کد ملی: {{ user.n_code }} | سطح: {{ user.profile.get_level_display }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        {% if results.courses %}
+            <h3 style="margin-top: 40px;"><i class="fas fa-book"></i> دروس</h3>
+            {% for course in results.courses %}
+                <div class="result-card">
+                    <a href="#">
+                        {{ course.name }}
+                    </a>
+                    <div class="result-meta">
+                        سطح: {{ course.get_level_display }} | معلم: {{ course.teacher.profile.last_name }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+{% endblock %}
