@@ -1,114 +1,125 @@
 <div align="center">
-
-<a href="https://github.com/kasramahmoud4161/mozi">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=55&pause=1000&color=58A6FF&center=true&vCenter=true&width=800&lines=MOZI+Project;Redefining+Performance;Simple.+Fast.+Secure." alt="Typing SVG" />
-</a>
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&height=4&section=header&text=&fontSize=0&fontColor=ffffff" width="80%">
-
-<br><br>
-
-<p align="center" style="font-size: 1.1rem; max-width: 600px; color: #c9d1d9;">
-  پروژه <b>MOZI</b> یک ابزار نسل جدید است که برای [کار اصلی پروژه را اینجا بنویس] طراحی شده. ما پیچیدگی‌ها را حذف کردیم تا شما روی هدف اصلی تمرکز کنید.
-</p>
-
-<p align="center">
-  <a href="#features">
-    <img src="https://img.shields.io/badge/✨%20Explore-Features-2ea44f?style=flat-square" alt="Features">
-  </a>
-  <a href="#demo">
-    <img src="https://img.shields.io/badge/📸%20Watch-Demo-1f6feb?style=flat-square" alt="Demo">
-  </a>
-  <a href="https://github.com/kasramahmoud4161/mozi/stargazers">
-    <img src="https://img.shields.io/github/stars/kasramahmoud4161/mozi?style=flat-square&color=daaa3f&logo=starship" alt="Stars">
-  </a>
-</p>
-
-</div>
-
-<br>
-
-## 🚀 چرا MOZI متفاوت است؟
-
-<table>
-  <tr>
-    <td width="50%" valign="top" style="border: none;">
-      <h3 align="center">⚡ سرعت و کارایی</h3>
-      <p align="center">
-        <img src="https://cdn-icons-png.flaticon.com/512/8855/8855727.png" width="60">
-      </p>
-      <p>
-        ماژولار و سبک. MOZI طوری طراحی شده که کمترین منابع را مصرف کند و در سریع‌ترین زمان ممکن اجرا شود. بدون تاخیر، بدون لگ.
-      </p>
-      <ul>
-        <li>معماری بهینه شده</li>
-        <li>زمان بارگذاری زیر ۱ ثانیه</li>
-      </ul>
-    </td>
-    <td width="50%" valign="top" style="border: none;">
-      <h3 align="center">💎 رابط کاربری مدرن</h3>
-      <p align="center">
-        <img src="https://cdn-icons-png.flaticon.com/512/6840/6840473.png" width="60">
-      </p>
-      <p>
-        زیبایی در سادگی است. رابط کاربری ما طوری طراحی شده که چشم‌نواز باشد و کار کردن با آن لذت‌بخش و بصری باشد.
-      </p>
-      <ul>
-        <li>تم تاریک و روشن</li>
-        <li>طراحی کاملا ریسپانسیو</li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" valign="top" style="border: none;">
-      <h3 align="center">🛡️ امنیت پایدار</h3>
-      <p align="center">
-        <img src="https://cdn-icons-png.flaticon.com/512/2345/2345337.png" width="60">
-      </p>
-      <p>
-        امنیت داده‌های شما اولویت ماست. ما از آخرین استانداردهای رمزنگاری برای محافظت از اطلاعات استفاده می‌کنیم.
-      </p>
-    </td>
-    <td width="50%" valign="top" style="border: none;">
-      <h3 align="center">🔄 بروزرسانی مداوم</h3>
-      <p align="center">
-        <img src="https://cdn-icons-png.flaticon.com/512/9436/9436180.png" width="60">
-      </p>
-      <p>
-        این پروژه زنده است. ما به طور مداوم ویژگی‌های جدید اضافه می‌کنیم و باگ‌ها را بر اساس بازخورد جامعه رفع می‌کنیم.
-      </p>
-    </td>
-  </tr>
-</table>
-
-<br>
-
-## 🛠️ تکنولوژی‌های هسته (Core Tech)
-
-<div align="center">
-  <img src="https://img.shields.io/badge/PYTHON-3776AB?style=for-the-badge&logo=python&logoColor=white">
-  <img src="https://img.shields.io/badge/JAVASCRIPT-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
-  <img src="https://img.shields.io/badge/DOCKER-2496ED?style=for-the-badge&logo=docker&logoColor=white">
-  <img src="https://img.shields.io/badge/GIT-F05032?style=for-the-badge&logo=git&logoColor=white">
-</div>
-
-<br>
-
-<div id="demo" align="center">
-  <h2>📸 نگاهی به پروژه</h2>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=300&section=header&text=&fontSize=90&animation=fadeIn&fontAlignY=38&descAlignY=55&descSize=30" width="100%" style="position: relative; z-index: 1;">
   
-  <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="Project Demo" width="90%" style="border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+  <div style="margin-top: -140px; position: relative; z-index: 2;">
+    <img src="https://ui-avatars.com/api/?name=M&background=0D1117&color=00f2ff&size=150&rounded=true&bold=true&font-size=0.5&length=1" alt="MOZI Logo" width="140" style="border: 5px solid #00f2ff; border-radius: 50%; box-shadow: 0 0 35px rgba(0, 242, 255, 0.7);">
+  </div>
 
-  <br><br>
-  
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=kasramahmoud4161&repo=mozi&theme=radical&bg_color=0d1117&title_color=58A6FF&icon_color=58A6FF" alt="Repo Stats">
+  <a href="https://github.com/kasramahmoud4161/mozi">
+    <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&weight=900&size=60&pause=1000&color=FFFFFF&center=true&vCenter=true&width=700&lines=MOZI+PROJECT;THE+FUTURE+IS+NOW;ULTIMATE+PERFORMANCE" alt="Typing SVG" />
+  </a>
+
+  <p>
+    <img src="https://img.shields.io/github/stars/kasramahmoud4161/mozi?style=for-the-badge&logo=starship&color=ffe600&labelColor=black" alt="Stars">
+    <img src="https://img.shields.io/github/forks/kasramahmoud4161/mozi?style=for-the-badge&logo=git&color=00f2ff&labelColor=black" alt="Forks">
+    <img src="https://img.shields.io/github/last-commit/kasramahmoud4161/mozi?style=for-the-badge&logo=history&color=ff0055&labelColor=black" alt="Last Commit">
+    <img src="https://img.shields.io/badge/Language-Python%20%7C%20JS-blue?style=for-the-badge&logo=code&labelColor=black" alt="Lang">
+  </p>
 </div>
 
 ---
 
+<details>
+  <summary><b>📚 فهرست مطالب (Table of Contents) - کلیک کنید</b></summary>
+  <br>
+
+  - [درباره پروژه](#-درباره-mozi)
+  - [ویژگی‌های کلیدی](#-ویژگی‌های-کلیدی-key-features)
+  - [دمو و اسکرین‌شات](#-نمای-پروژه-demo)
+  - [تکنولوژی‌ها](#-تکنولوژی‌های-هسته-tech-stack)
+  - [نصب و راه‌اندازی](#-نصب-و-راه‌اندازی-installation)
+  - [راهنمای استفاده](#-راهنمای-استفاده-usage)
+  - [پیکربندی](#-پیکربندی-configuration)
+  - [ساختار فایل‌ها](#-ساختار-فایل‌ها-file-structure)
+  - [نقشه راه](#-نقشه-راه-roadmap)
+  - [مشارکت](#-مشارکت-contributing)
+</details>
+
+---
+
+## 💎 درباره MOZI
+
+> **MOZI** فقط یک نرم‌افزار نیست؛ یک اکوسیستم کامل است.
+
+پروژه **MOZI** با هدف حل چالش‌های پیچیده در [حوزه کاری پروژه را بنویسید] طراحی شده است. ما با ترکیب الگوریتم‌های پیشرفته و رابط کاربری مینیمال، تجربه‌ای را خلق کرده‌ایم که هم برای توسعه‌دهندگان و هم برای کاربران نهایی لذت‌بخش باشد.
+
+---
+
+## 🚀 ویژگی‌های کلیدی (Key Features)
+
+<table>
+  <tr>
+    <td width="33%" align="center">
+      <img src="https://cdn-icons-png.flaticon.com/512/8061/8061699.png" width="50">
+      <br><b>معماری ماژولار</b>
+      <p align="center"><small>قابلیت توسعه آسان و جدا بودن اجزا برای مدیریت بهتر کد.</small></p>
+    </td>
+    <td width="33%" align="center">
+      <img src="https://cdn-icons-png.flaticon.com/512/2881/2881142.png" width="50">
+      <br><b>بهینه‌سازی شده</b>
+      <p align="center"><small>مصرف رم و پردازنده به حداقل رسیده است.</small></p>
+    </td>
+    <td width="33%" align="center">
+      <img src="https://cdn-icons-png.flaticon.com/512/11516/11516067.png" width="50">
+      <br><b>رابط کاربری مدرن</b>
+      <p align="center"><small>استفاده از اصول Material Design و انیمیشن‌های نرم.</small></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" align="center">
+      <img src="https://cdn-icons-png.flaticon.com/512/2092/2092663.png" width="50">
+      <br><b>Cross-Platform</b>
+      <p align="center"><small>قابل اجرا روی ویندوز، لینوکس و مک.</small></p>
+    </td>
+    <td width="33%" align="center">
+      <img src="https://cdn-icons-png.flaticon.com/512/2621/2621045.png" width="50">
+      <br><b>امنیت ابری</b>
+      <p align="center"><small>رمزنگاری End-to-End داده‌ها.</small></p>
+    </td>
+    <td width="33%" align="center">
+      <img src="https://cdn-icons-png.flaticon.com/512/1005/1005141.png" width="50">
+      <br><b>پشتیبانی از API</b>
+      <p align="center"><small>دارای Restful API کامل برای اتصال.</small></p>
+    </td>
+  </tr>
+</table>
+
+---
+
+## 📸 نمای پروژه (Demo)
+
 <div align="center">
-  <p>
-    Developed with 💙 by <a href="https://github.com/kasramahmoud4161">Kasra Mahmoud</a>
-  </p>
-  <img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&height=2&section=footer&text=&fontSize=0&fontColor=ffffff" width="100%">
+  <img src="https://i.pinimg.com/originals/e8/34/00/e8340056972782b9b7e9b441f9247657.gif" alt="MOZI Dashboard" width="100%" style="border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); border: 1px solid #333;">
+  <p><i>👆 نمایی از محیط کاربری پویا و تعاملی MOZI</i></p>
 </div>
+
+---
+
+## 🛠 تکنولوژی‌های هسته (Tech Stack)
+
+ما از بهترین ابزارهای روز دنیا استفاده کرده‌ایم:
+
+<div align="center">
+  <img src="https://skillicons.dev/icons?i=python,js,react,nodejs,mongodb,docker,git,vscode,linux&perline=9" />
+</div>
+
+---
+
+## ⚙️ نصب و راه‌اندازی (Installation)
+
+پیش‌نیازها:
+* Python 3.8+
+* Node.js 14+
+
+### روش اول: نصب سریع با Git
+
+```bash
+# 1. مخزن را کلون کنید
+git clone [https://github.com/kasramahmoud4161/mozi.git](https://github.com/kasramahmoud4161/mozi.git)
+
+# 2. وارد دایرکتوری شوید
+cd mozi
+
+# 3. نصب پکیج‌ها
+pip install -r requirements.txt
+npm install
